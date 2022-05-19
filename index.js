@@ -40,6 +40,7 @@ async function run() {
         const bookingCollection = client.db('doctorsPortal').collection('bookings');
         const userCollection = client.db('doctorsPortal').collection('users');
         const doctorCollection = client.db('doctorsPortal').collection('doctors');
+        const paymentCollection = client.db('doctorsPortal').collection('payments');
 
 
         const verifyAdmin = async (req, res, next) => {
@@ -136,10 +137,23 @@ async function run() {
         app.get('/booking/:id', verifyJWT, async (req, res) => {
             const id = req.params.id;
             const query = { _id: ObjectId(id) };
-            console.log(query);
             const booking = await bookingCollection.findOne(query);
-            console.log(booking);
             res.send(booking);
+        })
+
+        app.patch('/booking/:id', verifyJWT, async (req, res) => {
+            const id = req.params.id;
+            const payment = req.body;
+            const filter = { _id: ObjectId(id) };
+            const updateDoc = {
+                $set: {
+                    paid: true,
+                    transactionId: payment.transactionId,
+                }
+            };
+            const result = await paymentCollection.insertOne(payment);
+            const updatedBooking = await bookingCollection.updateOne(filter, updateDoc);
+            res.send(updateDoc);
         })
 
 
