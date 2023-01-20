@@ -230,7 +230,7 @@ async function run() {
 run().catch(console.dir);
 
 app.get("/", (req, res) => {
-  res.send("Hello World! from doctor portal portal");
+  res.send("Hello World! from doctor portal");
 });
 
 app.listen(port, () => {
