@@ -11,9 +11,9 @@ const port = process.env.PORT || 5000;
 app.use(cors());
 app.use(express.json());
 
-// app.use((req, res, next) => {
-//   res.header("Access-Control-Allow-Origin", "*");
-// });
+app.use((req, res, next) => {
+  res.header("Access-Control-Allow-Origin", "*");
+});
 
 // const http = require("http");
 // const server = http.createServer((req, res) => {
@@ -230,7 +230,7 @@ async function run() {
 run().catch(console.dir);
 
 app.get("/", (req, res) => {
-  res.send("Hello World! from doctor portal");
+  res.send("Hello World! from doctor portalsssssss");
 });
 
 app.listen(port, () => {
