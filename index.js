@@ -8,8 +8,8 @@ const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY);
 const port = process.env.PORT || 5000;
 
 const corsOptions = {
-  // origin: "https://doctors--portal-6b422.web.app",
-  origin: "http://localhost:3000/",
+  origin: "https://doctors--portal-6b422.web.app",
+  // origin: "http://localhost:3000/",
   optionsSuccessStatus: 200, // some legacy browsers (IE11, various SmartTVs) choke on 204
 };
 //middleware
